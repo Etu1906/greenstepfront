@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 import StepCounter from '../components/StepCounter';
+import Map from '../components/example/Map';
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <StepCounter/>
+        <Map />
       </IonContent>
     </IonPage>
   );
