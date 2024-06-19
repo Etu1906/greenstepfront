@@ -1,0 +1,7 @@
+{
+  "name": "greenstepfront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
