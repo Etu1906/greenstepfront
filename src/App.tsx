@@ -32,7 +32,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
+import AjoutMoyenTransportRoot from './components/transport/container/ajout-moyen-transport-root';
+import './app.scss';
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -44,6 +45,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
+        </Route>
+        <Route exact path="/moyen-transport">
+        <AjoutMoyenTransportRoot />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

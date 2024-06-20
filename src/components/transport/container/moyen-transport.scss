@@ -1,0 +1,21 @@
+$primary-color: #f7f2ef;
+$white-color:#ffff;
+.container__moyen-transport{
+    background-color: $primary-color;
+    padding: 25px;
+    .title__container
+    {
+        margin-top: 40px;
+        display: grid;
+        font-size: 20px;
+        grid-template-columns: 1.5fr 3fr 1fr;
+        .title{
+            text-align: center;
+
+            font-weight: bold;
+        }
+        .moyen__input{
+            color:$white-color;
+        }
+    }
+}
