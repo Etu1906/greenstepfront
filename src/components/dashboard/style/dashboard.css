@@ -206,6 +206,7 @@ g{
   background-size: cover;
   flex-direction: column;
 }
+
 .rewards-inner{
   background-color: #a3b18a;
   width: 80%;
@@ -223,5 +224,10 @@ g{
   background-position: center;
   background-image: url("wood.png");
   height: 30vh;
-
+  padding: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-top: calc(20% + 35px);
 }
