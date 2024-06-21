@@ -1,3 +1,4 @@
+import { IonContent } from "@ionic/react";
 import { Tab, Tabs } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import "../../../theme/variables.scss";
@@ -73,7 +74,9 @@ const RankingRoot = () => {
           <GradientCircularProgress />
         </div>
       ) : (
-        <RankingComponent ranking={state.ranking} />
+        <IonContent>
+          <RankingComponent ranking={state.ranking} />
+        </IonContent>
       )}
     </div>
   );

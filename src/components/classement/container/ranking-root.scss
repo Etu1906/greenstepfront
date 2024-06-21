@@ -1,6 +1,9 @@
 @import "../../../theme/variables.scss";
 
 #ranking-root {
+  ion-content {
+    min-height: 100vh;
+  }
   .title {
     text-align: center;
     font-weight: bold;
