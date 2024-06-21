@@ -1,7 +1,10 @@
-$primary-color: #f7f2ef;
+$primary-color: #f1f1f1;
 $black-color: #241f1d;
 body{
     background: $primary-color;
     color:$black-color;
-    font-family: Arial;
+    // font-family: Arial;
+}
+ion-page{
+    background: $primary-color;
 }
