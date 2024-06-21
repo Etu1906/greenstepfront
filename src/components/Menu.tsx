@@ -24,10 +24,10 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
+  carOutline
 } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import "./Menu.css";
-
 interface AppPage {
   url: string;
   iosIcon: string;
@@ -37,10 +37,10 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: "Inbox",
-    url: "/folder/Inbox",
-    iosIcon: mailOutline,
-    mdIcon: mailSharp,
+    title: "vos moyen de transport",
+    url: "/moyen-transport",
+    iosIcon: carOutline,
+    mdIcon: carOutline,
   },
   {
     title: "Outbox",
