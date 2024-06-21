@@ -6,7 +6,7 @@ export const DashboardHead: React.FC = () => {
         <IonMenuButton />
 
         <span>Mon tableau de bord</span>
-        <div className="my-button">10</div>
+        <div className="my-button">LV10</div>
       </div>
     </>
   );
