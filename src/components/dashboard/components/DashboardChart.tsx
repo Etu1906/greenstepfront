@@ -35,7 +35,11 @@ export const DashboardChart: React.FC<DashboardChartProps> = (props) => {
   return (
     <>
       <div className="dashboard-week">
-        <span className="my-title">Votre activité</span>
+      {props.type=="week" && <span className="my-title">Cette semaine</span>}
+      {props.type=="month" && <span className="my-title">Ce mois</span>}
+
+          
+
         <div className="legends">
           <div className="legend">
             <div className="color" id="legend-pas-color"></div>
@@ -67,39 +71,7 @@ export const DashboardChart: React.FC<DashboardChartProps> = (props) => {
           />
         </div>
       </div>
-      <div className="dashboard-week">
-        <span className="my-title">Votre activité</span>
-        <div className="legends">
-          <div className="legend">
-            <div className="color" id="legend-pas-color"></div>
-            <div className="legend-label">Pas</div>
-          </div>
-          <div className="legend">
-            <div className="color" id="legend-carbone-color"></div>
-            <div className="legend-label">Emp. Carb.</div>
-          </div>
-        </div>
-        <div className="dashboard-chart">
-          <BarChart
-            borderRadius={20}
-            series={[
-              {
-                data: props.greendata,
-                label: "pas",
-                id: "pas",
-                color: "#588157",
-              },
-              {
-                data: props.reddata,
-                label: "empreinte carbone",
-                id: "carbone",
-                color: "#faa5a5",
-              },
-            ]}
-            xAxis={[{ data: labels, scaleType: "band" }]}
-          />
-        </div>
-      </div>
+  
     </>
   );
 };
