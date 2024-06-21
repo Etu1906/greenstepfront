@@ -21,8 +21,13 @@
 }
 .my-button{
     background-color: #a3b18a;
-    border-radius: 8px;
+    border-radius: 14px;
     color:white!important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 ion-icon{
     color:white;
@@ -92,7 +97,9 @@ ion-icon{
 .MuiBarElement-series-pas{
   width: 10px;
 }
-
+.MuiChartsAxis-directionY{
+  display: none;
+}
 g{
   width: 20px;
   display: block;
@@ -101,7 +108,7 @@ g{
   position: relative;
   width: 100vw;
   height: 40vh;
-  margin-left: 3vh;
+  /* margin-left: 2vh; */
 }
 .MuiChartsLegend-root {
   display: none;
