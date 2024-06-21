@@ -1,33 +1,28 @@
-import {
-  useIonViewDidEnter,
-  useIonViewDidLeave,
-  useIonViewWillEnter,
-  useIonViewWillLeave
-} from '@ionic/react';
-import React, { useState, useEffect } from "react";
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import 'leaflet-routing-machine';
-import axios from 'axios';
-import './Map.css';
+import { useIonViewDidEnter } from "@ionic/react";
+import axios from "axios";
+import L from "leaflet";
+import "leaflet-routing-machine";
+import "leaflet/dist/leaflet.css";
+import React, { useEffect, useState } from "react";
+import "./Map.css";
 
 const Map: React.FC = () => {
   const [map, setMap] = useState<L.Map | null>(null);
   const [from, setFrom] = useState<[number, number] | null>(null);
   const [to, setTo] = useState<[number, number] | null>(null);
-  const [fromInput, setFromInput] = useState('');
-  const [toInput, setToInput] = useState('');
+  const [fromInput, setFromInput] = useState("");
+  const [toInput, setToInput] = useState("");
 
   useIonViewDidEnter(() => {
-    const mapInstance = L.map('map', {
+    const mapInstance = L.map("map", {
       center: [49.8419, 24.0315],
       zoom: 16,
       layers: [
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
           attribution:
-            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         }),
-      ]
+      ],
     });
     setMap(mapInstance);
   });
@@ -46,13 +41,16 @@ const Map: React.FC = () => {
   }, [map, from, to]);
 
   const geocode = async (place: string) => {
-    const response = await axios.get('https://nominatim.openstreetmap.org/search', {
-      params: {
-        q: place,
-        format: 'json',
-        addressdetails: 1,
-      },
-    });
+    const response = await axios.get(
+      "https://nominatim.openstreetmap.org/search",
+      {
+        params: {
+          q: place,
+          format: "json",
+          addressdetails: 1,
+        },
+      }
+    );
     if (response.data && response.data.length > 0) {
       const { lat, lon } = response.data[0];
       return [parseFloat(lat), parseFloat(lon)] as [number, number];
@@ -71,8 +69,8 @@ const Map: React.FC = () => {
   const handleValidate = async () => {
     const fromCoords = await geocode(fromInput);
     const toCoords = await geocode(toInput);
-    console.log( fromCoords );
-    console.log( toCoords );
+    console.log(fromCoords);
+    console.log(toCoords);
     setFrom(fromCoords);
     setTo(toCoords);
   };
@@ -88,9 +86,9 @@ const Map: React.FC = () => {
         <input type="text" value={toInput} onChange={handleToChange} />
       </div>
       <button onClick={handleValidate}>Valider</button>
-      <div id="map" style={{ height: '1000px', width: '100%' }}></div>
+      <div id="map" style={{ height: "500px", width: "100%" }}></div>
     </div>
   );
-}
+};
 
 export default Map;

@@ -222,11 +222,11 @@ g{
 
 .sentence-rewards{
   color: white; 
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   width: 80%;
-  padding: 10px;
+  padding: 5px;
   background-size: cover;
   background-position: center;
   background-image: url("wood.png");
@@ -238,3 +238,4 @@ g{
   flex-direction: row;
   padding-top: calc(20% + 35px);
 }
+
