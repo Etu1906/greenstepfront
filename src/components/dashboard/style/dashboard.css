@@ -21,8 +21,13 @@
 }
 .my-button{
     background-color: #a3b18a;
-    border-radius: 8px;
+    border-radius: 14px;
     color:white!important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 ion-icon{
     color:white;
@@ -92,7 +97,9 @@ ion-icon{
 .MuiBarElement-series-pas{
   width: 10px;
 }
-
+.MuiChartsAxis-directionY{
+  display: none;
+}
 g{
   width: 20px;
   display: block;
@@ -101,7 +108,7 @@ g{
   position: relative;
   width: 100vw;
   height: 40vh;
-  margin-left: 3vh;
+  /* margin-left: 2vh; */
 }
 .MuiChartsLegend-root {
   display: none;
@@ -181,4 +188,47 @@ g{
 .sentence{
   font-size: 13px;
   font-weight: 300;
+}
+
+.filter{
+  position: absolute;
+  z-index: 100;
+  background: white;
+  opacity: 80%;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+}
+.rewards-level-up{
+  position: absolute;
+  top: 0;
+  z-index: 101;
+  width:100vw ;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("background-reward.jpg");
+  background-position: center;
+  background-size: cover;
+  flex-direction: column;
+}
+.rewards-inner{
+  background-color: #a3b18a;
+  width: 80%;
+  padding: 10px;
+}
+
+.sentence-rewards{
+  color: white; 
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("wood.png");
+  height: 30vh;
+
 }

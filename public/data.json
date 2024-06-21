@@ -1,0 +1,120 @@
+{
+    "voitures": [
+        {
+            "marques": [
+                {
+                    "id": 1,
+                    "nom": "Renault",
+                    "modeles": [
+                        {
+                            "id": 101,
+                            "nom": "R19"
+                        },
+                        {
+                            "id": 102,
+                            "nom": "Clio"
+                        },
+                        {
+                            "id": 103,
+                            "nom": "Megane"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "nom": "Peugeot",
+                    "modeles": [
+                        {
+                            "id": 201,
+                            "nom": "208"
+                        },
+                        {
+                            "id": 202,
+                            "nom": "308"
+                        },
+                        {
+                            "id": 203,
+                            "nom": "508"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "nom": "Citroën",
+                    "modeles": [
+                        {
+                            "id": 301,
+                            "nom": "C3"
+                        },
+                        {
+                            "id": 302,
+                            "nom": "C4"
+                        },
+                        {
+                            "id": 303,
+                            "nom": "C5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "marques": [
+                {
+                    "id": 4,
+                    "nom": "Toyota",
+                    "modeles": [
+                        {
+                            "id": 401,
+                            "nom": "Corolla"
+                        },
+                        {
+                            "id": 402,
+                            "nom": "Camry"
+                        },
+                        {
+                            "id": 403,
+                            "nom": "Yaris"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "nom": "Honda",
+                    "modeles": [
+                        {
+                            "id": 501,
+                            "nom": "Civic"
+                        },
+                        {
+                            "id": 502,
+                            "nom": "Accord"
+                        },
+                        {
+                            "id": 503,
+                            "nom": "CR-V"
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "nom": "Ford",
+                    "modeles": [
+                        {
+                            "id": 601,
+                            "nom": "Focus"
+                        },
+                        {
+                            "id": 602,
+                            "nom": "Mustang"
+                        },
+                        {
+                            "id": 603,
+                            "nom": "Fiesta"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
