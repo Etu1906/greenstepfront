@@ -1,4 +1,4 @@
-import { IonContent } from "@ionic/react";
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonTitle, IonToolbar } from "@ionic/react";
 import { useState } from "react";
 import { DashboardComponent } from "../components/DashboardComponent";
 import { DashboardHead } from "../components/DashboardHead";
@@ -22,15 +22,17 @@ export const DashboardRoot: React.FC<DashboardProps> = (
       ...state,
       tab: parseInt(newValue),
     }));
+
   };
   return (
     <>
+      
       <IonContent>
         <div className="dashboard">
           <DashboardHead />
           <DashboardComponent />
         </div>
-        <Reward></Reward>
+        {/* <Reward></Reward> */}
       </IonContent>
     </>
   );
