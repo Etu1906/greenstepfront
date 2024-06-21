@@ -1,9 +1,9 @@
-import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
+import { DashboardComponent } from "../components/DashboardComponent";
 import { DashboardHead } from "../components/DashboardHead";
+import { IonContent, IonPage } from "@ionic/react";
 import "../style/dashboard.css";
-import { GreenDashboard } from "../components/GreenDashboard";
-import { RedDashboard } from "../components/RedDashboard";
+
 interface DashboardState {
   tab: number;
 }
@@ -20,21 +20,12 @@ export const DashboardRoot: React.FC = () => {
   };
   return (
     <>
-      <div className="dashboard">
-        <DashboardHead/>
-        <Tabs
-          className="tabs"
-          value={state.tab.toString()}
-          onChange={handleTabChange}
-          aria-label="wrapped label tabs example"
-        >
-          <Tab value="1" label="Mes pas" />
-          <Tab value="2" label="Empreinte Carbone" />
-        </Tabs>
-        {state.tab==1 && <GreenDashboard/>}
-        {state.tab==2 && <RedDashboard/>}
-
-      </div>
+        <IonContent>
+          <div className="dashboard">
+            <DashboardHead />
+            <DashboardComponent />
+          </div>
+        </IonContent>
     </>
   );
 };

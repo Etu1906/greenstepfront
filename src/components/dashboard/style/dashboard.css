@@ -1,5 +1,5 @@
 .dashboard-head{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+   
     display: flex;
     justify-content: space-between;
     /* padding: 2vh; */
@@ -7,9 +7,11 @@
     
     align-items: center;
 }
+
 .dashboard{
     padding-left: 4vh;
     padding-right: 4vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 .dashboard-head span{
     font-size: 20px;
@@ -72,4 +74,76 @@ ion-icon{
 }
 .inner-dashboard{
   margin-top: 6vh;
+}
+.MuiChartsAxis-line{
+  display: none;
+}
+.MuiChartsAxis-tick{
+  display: none;
+}
+.MuiBarElement-series-pas{
+  width: 10px;
+}
+
+g{
+  width: 20px;
+  display: block;
+}
+.dashboard-chart{
+  position: relative;
+  width: 100vw;
+  height: 40vh;
+}
+.MuiChartsLegend-root {
+  display: none;
+}
+.dashboard-week{
+  margin-top:6vh;
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.dashboard-chart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-title{
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 2vh;
+}
+
+.legends{
+  margin-top: 2vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.legend{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.color{
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.legend-label{
+  margin-left: 15px;
+}
+#legend-pas-color{
+  background-color: #588157;
+}
+#legend-carbone-color{
+  background-color: #faa5a5;
+}
+.MuiChartsAxis-directionY{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
