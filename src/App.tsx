@@ -42,6 +42,7 @@ import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import Page from "./pages/Page";
 import "./theme/variables.css";
+import MapRoot from "./components/map/Map-root";
 
 setupIonicReact();
 
@@ -77,6 +78,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/folder/:name" exact={true}>
               <Page />
+            </Route>
+            <Route path="/map" >
+              <MapRoot />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
