@@ -1,5 +1,7 @@
 $primary-color: #f7f2ef;
 $white-color:#ffff;
+$second-colr:#344e41;
+$third-color:#a3b18a;
 .container__moyen-transport{
     background-color: $primary-color;
     padding: 25px;
@@ -17,5 +19,16 @@ $white-color:#ffff;
         .moyen__input{
             color:$white-color;
         }
+    }   
+    .moyen__section{
+        margin: auto;
+        padding-top: 40px;
     }
+
 }
+ion-toast.custom-toast {
+    --background:#2dd55b;
+    --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    --color:white;
+    --border-radius: 10px;
+  }
