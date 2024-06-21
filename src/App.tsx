@@ -35,27 +35,41 @@ import "./app.scss";
 import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import "./theme/variables.css";
+
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route exact path="/moyen-transport">
-          <AjoutMoyenTransportRoot />
-        </Route>
-        <Route exact path="/dashboard">
-          <DashboardRoot />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const lastVisitKey = "lastVisit";
+  const storedDate = localStorage.getItem(lastVisitKey);
+  var newDay = false;
+  if (storedDate !== null) {
+    if (storedDate.localeCompare(new Date().toLocaleDateString()) == 0) {
+      newDay = false;
+    } else {
+      newDay = true;
+      localStorage.setItem(lastVisitKey, new Date().toLocaleDateString());
+    }
+  } else {
+    newDay = true;
+    localStorage.setItem(lastVisitKey, new Date().toLocaleDateString());
+  }
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/moyen-transport">
+            <AjoutMoyenTransportRoot />
+          </Route>
+          <Route exact path="/">
+            <DashboardRoot newDay={newDay}/>
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
