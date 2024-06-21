@@ -68,8 +68,8 @@ export const Reward: React.FC = () => {
         {state.tab == 1 && (
           <span className="sentence-rewards">
             {" "}
-            Bravo, vous avez fait {state.old_pas - state.new_pas} pas en plus.
-            Vous recevez donc {state.old_pas - state.new_pas} points!!
+            Bravo, vous avez fait {state.new_pas - state.old_pas} pas en plus.
+            Vous recevez donc {state.new_pas - state.old_pas} points!!
             <br />
             Touchez pour continuer...
           </span>
