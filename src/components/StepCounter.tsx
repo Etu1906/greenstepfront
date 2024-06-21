@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { IonButton, IonText } from '@ionic/react';
-import { Pedometer } from '@ionic-native/pedometer';
-import { Device } from '@capacitor/device';
+import { Device } from "@capacitor/device";
+import { Pedometer } from "@ionic-native/pedometer";
+import { IonButton, IonText } from "@ionic/react";
+import React, { useEffect, useState } from "react";
 
 const StepCounter: React.FC = () => {
   const [stepCount, setStepCount] = useState(0);
@@ -10,14 +10,14 @@ const StepCounter: React.FC = () => {
   useEffect(() => {
     const checkPedometerAvailability = async () => {
       const info = await Device.getInfo();
-      console.log('info : ', info);
-      if (info.platform !== 'web') {
+      console.log("info : ", info);
+      if (info.platform !== "web") {
         Pedometer.isStepCountingAvailable()
           .then((available) => {
             setIsPedometerAvailable(available);
           })
           .catch((error) => {
-            console.error('Pedometer not available:', error);
+            console.error("Pedometer not available:", error);
           });
       }
     };
@@ -25,17 +25,18 @@ const StepCounter: React.FC = () => {
   }, []);
 
   const startStepCounting = () => {
-    Pedometer.startPedometerUpdates()
-      .subscribe((data) => {
-        setStepCount(data.numberOfSteps);
-      });
+    Pedometer.startPedometerUpdates().subscribe((data) => {
+      setStepCount(data.numberOfSteps);
+    });
   };
 
   return (
     <>
       {isPedometerAvailable ? (
         <>
-          <IonButton onClick={startStepCounting}>Démarrer le comptage des pas</IonButton>
+          <IonButton onClick={startStepCounting}>
+            Démarrer le comptage des pas
+          </IonButton>
           <IonText>
             <h2>Nombre de pas : {stepCount}</h2>
           </IonText>

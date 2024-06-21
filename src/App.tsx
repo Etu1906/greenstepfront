@@ -36,31 +36,21 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
+import { useEffect } from "react";
 import "./app.scss";
 import Menu from "./components/Menu";
-import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
+import { Landing } from "./components/landing/container/Landing";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import Page from "./pages/Page";
 import "./theme/variables.css";
 import MapRoot from "./components/map/Map-root";
+import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
 
 setupIonicReact();
 
 const App: React.FC = () => {
-  const lastVisitKey = "lastVisit";
-  const storedDate = localStorage.getItem(lastVisitKey);
-  var newDay = false;
-  if (storedDate !== null) {
-    if (storedDate.localeCompare(new Date().toLocaleDateString()) == 0) {
-      newDay = false;
-    } else {
-      newDay = true;
-      localStorage.setItem(lastVisitKey, new Date().toLocaleDateString());
-    }
-  } else {
-    newDay = true;
-    localStorage.setItem(lastVisitKey, new Date().toLocaleDateString());
-  }
+
+  
   return (
     <IonApp>
       <IonReactRouter>
@@ -70,11 +60,14 @@ const App: React.FC = () => {
             <Route exact path="/home">
               <Home />
             </Route>
+            <Route exact path="/dashboard">
+              <DashboardRoot />
+            </Route>
             <Route exact path="/moyen-transport">
               <AjoutMoyenTransportRoot />
             </Route>
             <Route exact path="/">
-              <DashboardRoot newDay={newDay} />
+              <Landing/>
             </Route>
             <Route path="/folder/:name" exact={true}>
               <Page />
