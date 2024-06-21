@@ -1,0 +1,82 @@
+import { Tab, Tabs } from "@mui/material";
+import { SyntheticEvent, useEffect, useState } from "react";
+import "../../../theme/variables.scss";
+import { GradientCircularProgress } from "../../transport/components/AjoutMoyenTransport";
+import RankingComponent from "../components/ranking-component";
+import {
+  internationalRanking,
+  nationalRanking,
+} from "../services/ranking.service";
+import { Ranking } from "../types/ranking.type";
+import "./ranking-root.scss";
+
+interface RankingState {
+  ranking: Ranking[];
+  loading: boolean;
+  type: string;
+}
+
+const initialState: RankingState = {
+  ranking: [],
+  loading: true,
+  type: "0",
+};
+
+const RankingRoot = () => {
+  const [state, setState] = useState<RankingState>(initialState);
+
+  useEffect(() => {
+    console.log("haha");
+
+    setState((state) => ({
+      ...state,
+      loading: true,
+    }));
+
+    setTimeout(() => {
+      let rank: Ranking[] = [];
+      if (state.type == "0") {
+        rank = internationalRanking;
+      } else {
+        rank = nationalRanking;
+      }
+      setState((state) => ({
+        ...state,
+        ranking: rank,
+        loading: false,
+      }));
+    }, 500);
+  }, [state.type]);
+
+  const handleTabChange = (event: SyntheticEvent, newValue: string) => {
+    setState((state) => ({
+      ...state,
+      type: newValue,
+    }));
+  };
+
+  return (
+    <div id="ranking-root">
+      <h1 className="title">Leaderboard</h1>
+      <Tabs
+        value={state.type}
+        onChange={handleTabChange}
+        allowScrollButtonsMobile
+        scrollButtons="auto"
+        className="tabs"
+      >
+        <Tab className="tab-element" value="0" label="International" />
+        <Tab className="tab-element" value="1" label="Mon pays" />
+      </Tabs>
+      {state.loading ? (
+        <div className="loader-container" style={{ textAlign: "center" }}>
+          <GradientCircularProgress />
+        </div>
+      ) : (
+        <RankingComponent ranking={state.ranking} />
+      )}
+    </div>
+  );
+};
+
+export default RankingRoot;

@@ -18,6 +18,8 @@ import {
   heartSharp,
   mailOutline,
   mailSharp,
+  medalOutline,
+  medalSharp,
   paperPlaneOutline,
   paperPlaneSharp,
   trashOutline,
@@ -36,6 +38,12 @@ interface AppPage {
 }
 
 const appPages: AppPage[] = [
+  {
+    title: "Leaderboard",
+    url: "/leaderboard",
+    iosIcon: medalOutline,
+    mdIcon: medalSharp,
+  },
   {
     title: "Inbox",
     url: "/folder/Inbox",
