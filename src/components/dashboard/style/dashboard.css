@@ -237,11 +237,9 @@ g{
   justify-content: space-between;
   flex-direction: row;
   padding-top: calc(20% + 35px);
-}
 
 .sentence-rewards{
   animation: fadeInOut 1s 1; /* Animation de 3 secondes qui se joue une seule fois */
-
 }
 /* CSS */
 @keyframes fadeInOut {

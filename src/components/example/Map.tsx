@@ -86,7 +86,8 @@ const Map: React.FC = () => {
         <input type="text" value={toInput} onChange={handleToChange} />
       </div>
       <button onClick={handleValidate}>Valider</button>
-      <div id="map" style={{ height: "500px", width: "100%" }}></div>
+
+      <div id="map" style={{ height: '1000px', width: '100%' }}></div>
     </div>
   );
 };
