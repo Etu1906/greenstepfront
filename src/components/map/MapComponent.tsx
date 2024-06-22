@@ -3,7 +3,7 @@ import { Box, Button, IconButton, Skeleton, Stack, TextField, Typography, Drawer
 import CloseIcon from '@mui/icons-material/Close';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api';
-import API_KEY from '../../shared/hooks/constante';
+import {API_KEY ,  Transport_commun_empreinte } from '../../shared/hooks/constante';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
@@ -28,10 +28,9 @@ const Map = () => {
   const destinationRef = useRef();
   const [error, setError] = useState<string>('');
 
-  const voiture_person = true; // Example value, replace with your actual logic
+  const voiture_person = true; 
 
   useEffect(() => {
-    // Charger les moyens de transport depuis localStorage au montage du composant
     const moyenTransportsFromLocalStorage = JSON.parse(localStorage.getItem('moyenTransports') || '[]');
     setMoyenTransports(moyenTransportsFromLocalStorage);
     checkPermission();
@@ -172,13 +171,20 @@ const Map = () => {
     return totalTime.toFixed(2) + " mins"; // Formatage avec 2 décimales
   }
 
-  function getEmprunte_Carbone(distance: number, type: string): number {
-    // Placeholder function, replace with actual implementation
-    // Here we'll just return a mock value
-    if (type === 'voiture') {
-      return distance * 0.2; // Example calculation
+  function getEmpreinteCarbone(){
+    for( let i = 0 ; i != moyenTransports.length ; i++ ){
+      if(  moyenTransports[i].type.nom == 'voiture' ){
+        return moyenTransports[i].modele.emprunte_carbone;
+      }
     }
-    return  distance / 5.5;
+    return 0;
+  }
+
+  function getEmprunte_Carbone(distance: number, type: string): number {
+    if (type === 'voiture') {
+      return distance * getEmpreinteCarbone();
+    }
+    return  distance * Transport_commun_empreinte;
   }
 
   function handleListItemClick(value: number , type : string) {
@@ -235,8 +241,8 @@ const Map = () => {
           <Autocomplete>
           <TextField
             variant="outlined"
-            label="Origin"
-            placeholder="Origin"
+            label="Départ"
+            placeholder="Départ"
             inputRef={originRef}
             sx={{ width: '150px' }}
           />
