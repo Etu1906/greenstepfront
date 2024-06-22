@@ -23,7 +23,16 @@ const RankingComponent = (props: RankingProps) => {
                   />
                 </IonCol>
                 <IonCol className="rank-pseudo">
-                  <p>{r.pseudo}</p>
+                <p style={{ display:"flex", alignItems:"center" }} >
+                  {r.pseudo}
+                  {i === 0 && (
+                    <img
+                      src="./medaille.png" 
+                      alt="Special icon"
+                      style={{ marginLeft: '10px', height: '35px' }} // Ajoutez vos styles ici
+                    />
+                  )}
+                </p>
                 </IonCol>
                 <IonCol>
                   <div className="rank-pts">
@@ -35,6 +44,14 @@ const RankingComponent = (props: RankingProps) => {
                       <span className="red circle"></span>
                       <span>{r.redPoints}</span>
                     </p>
+                    {/* <p>
+                      <span > <img src="./chaussure.jfif" /> </span>
+                      <span>{r.greenPoints}</span>
+                    </p>
+                    <p>
+                      <span ><img src="./fumee.avif" /></span>
+                      <span>{r.redPoints}</span>
+                    </p> */}
                   </div>
                 </IonCol>
               </IonRow>

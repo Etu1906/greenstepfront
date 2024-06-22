@@ -60,7 +60,7 @@ const RankingRoot = () => {
     <div id="ranking-root">
       <div className="dashboard-head padding-head" style={{paddingLeft:"4vh", paddingRight: "4vh"}} >
         <IonMenuButton />
-        <span>Leaderboard</span>
+        <span style={{display:"flex" , alignItems:"center"}} ><img src="./R.jfif" height={50} alt="" />  Leaderboard</span>
         <div className="my-button">Lv10</div>
       </div>
       <Tabs

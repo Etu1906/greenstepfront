@@ -26,15 +26,54 @@ const Map = () => {
   const [type_click, setType_click] = useState("");
   const originRef = useRef();
   const destinationRef = useRef();
+  const [error, setError] = useState<string>('');
 
   const voiture_person = true; // Example value, replace with your actual logic
 
   useEffect(() => {
-    getLocation();
     // Charger les moyens de transport depuis localStorage au montage du composant
     const moyenTransportsFromLocalStorage = JSON.parse(localStorage.getItem('moyenTransports') || '[]');
     setMoyenTransports(moyenTransportsFromLocalStorage);
+    checkPermission();
   }, []);
+
+  const requestLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setOrigin(`${latitude}, ${longitude}`);
+        },
+        (error) => {
+          console.error('Error getting current position:', error);
+          setError('Error getting current position.');
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      setError('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const checkPermission = () => {
+    if (navigator.permissions) {
+      navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
+        if (permissionStatus.state === 'granted') {
+          getLocation();
+        } else if (permissionStatus.state === 'prompt') {
+          requestLocation();
+        } else {
+          setError('Geolocation permission denied.');
+        }
+      }).catch((error) => {
+        console.error('Error checking geolocation permission:', error);
+        setError('Error checking geolocation permission.');
+      });
+    } else {
+      console.error('Geolocation permissions API not supported.');
+      setError('Geolocation permissions API not supported.');
+    }
+  };
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -194,7 +233,15 @@ const Map = () => {
       >
         <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap">
           <Autocomplete>
-            <TextField variant="outlined" label="Origin" placeholder="Origin" inputRef={originRef} value={origin} sx={{ width: '150px' }} />
+          <TextField
+            variant="outlined"
+            label="Origin"
+            placeholder="Origin"
+            inputRef={originRef}
+            sx={{ width: '150px' }}
+            value={origin} // Définir la valeur conditionnellement
+          />
+
           </Autocomplete>
           <Autocomplete>
             <TextField variant="outlined" inputRef={destinationRef} label="Destination" placeholder="Destination" sx={{ width: '150px' }} />
