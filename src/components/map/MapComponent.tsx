@@ -9,6 +9,8 @@ import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import { IonMenuButton, IonToast } from '@ionic/react';
+import "./Map.scss";
 const Map = () => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: API_KEY,
@@ -19,12 +21,19 @@ const Map = () => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const [success_toast ,setSuccess] = useState(false);
+  const [moyenTransports, setMoyenTransports] = useState<any[]>([]); // État pour stocker les moyens de transport
+  const [type_click, setType_click] = useState("");
   const originRef = useRef();
   const destinationRef = useRef();
 
+  const voiture_person = true; // Example value, replace with your actual logic
+
   useEffect(() => {
     getLocation();
+    // Charger les moyens de transport depuis localStorage au montage du composant
+    const moyenTransportsFromLocalStorage = JSON.parse(localStorage.getItem('moyenTransports') || '[]');
+    setMoyenTransports(moyenTransportsFromLocalStorage);
   }, []);
 
   function getLocation() {
@@ -122,6 +131,28 @@ const Map = () => {
   
     return totalTime.toFixed(2) + " mins"; // Formatage avec 2 décimales
   }
+
+  function getEmprunte_Carbone(distance: number, type: string): number {
+    // Placeholder function, replace with actual implementation
+    // Here we'll just return a mock value
+    if (type === 'voiture') {
+      return distance * 0.2; // Example calculation
+    }
+    return  distance / 5.5;
+  }
+
+  function handleListItemClick(value: number , type : string) {
+    const currentCarbone = parseFloat(localStorage.getItem('carbone') || '0');
+    const newCarbone = currentCarbone + value;
+    localStorage.setItem('carbone', newCarbone.toFixed(2));
+    setType_click(type);
+    setSuccess(true);
+    console.log( success_toast );
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3500);
+
+  }
   
   const center = { lng: 47.521, lat: -18.9153 };
 
@@ -197,61 +228,87 @@ const Map = () => {
           <IconButton color="primary" onClick={() => setDrawerOpen(!drawerOpen)}>
             {drawerOpen ? <CloseIcon /> : <Typography><DisplaySettingsIcon sx={{ color: "#2959a5" }} fontSize="large" /></Typography>}
           </IconButton>
+          <IonMenuButton className="hamburger__moyen-transport" sx={{ color: "#2959a5" }} />
+
         </Stack>
         {/* Drawer pour afficher les détails des itinéraires */}
         <Drawer anchor="right" open={drawerOpen} onClose={closeDrawer}>
-          <Box sx={{ width: 300, padding: 2 , fontSize: "20px" }}>
-            <Typography variant="h6">Taux empreinte carbone</Typography>
+          <Box p={2} width="350px" role="presentation">
+            <Typography variant="h6" sx={{ color:"#2959a5" }} >Itinéraires</Typography>
             <List>
               {/* Affichage pour chaque mode de déplacement */}
               {directionsResponses['DRIVING'] && (
                 <>
-                  <ListItem>
-                    <ListItemButton>
-                        <ListItemIcon><DirectionsCarFilledIcon />  </ListItemIcon>
+                  <ListItem  className={success_toast && type_click == 'DRIVING' ? 'list-item__map__smoke' : ''}>
+                    {voiture_person ? (
+                      <ListItemButton onClick={() => handleListItemClick(getEmprunte_Carbone(directionsResponses['DRIVING'].routes[0].legs[0].distance.value / 1000 , 'voiture') , 'DRIVING'  )}>
+                        <ListItemIcon><DirectionsCarFilledIcon sx={{color:'#2959a5'}} />  </ListItemIcon>
                         <ListItemText secondary={`${directionsResponses['DRIVING'].routes[0].legs[0].distance.text}`} primary={`${directionsResponses['DRIVING'].routes[0].legs[0].duration.text}`} />
                         <ListItemText  />
-                        <ListItemText primary="0.2%" />
-                    </ListItemButton>
+                        <ListItemText primary={getEmprunte_Carbone(directionsResponses['DRIVING'].routes[0].legs[0].distance.value / 1000 , 'voiture').toFixed(2)} primaryTypographyProps={{
+                    fontWeight: 600,
+                    fontSize:"20px",
+                    textAlign:"right"
+                  }} />
+                      </ListItemButton>
+                    ) : (
+                      <>
+                      </>
+                    )}
                   </ListItem>
                   <Divider />
                 </>
               )}
               {directionsResponses['BICYCLING'] && (
                 <>
-                        <ListItem>
-                        <ListItemButton>
-                            <ListItemIcon><DirectionsBikeIcon />  </ListItemIcon>
-                            
-                            <ListItemText secondary={`${directionsResponses['BICYCLING'].routes[0].legs[0].distance.text}`} primary={` ${getByciclesDuree()}`} />
-                            </ListItemButton>
-                        </ListItem>
-
+                  <ListItem  className={success_toast && type_click == 'BICYCLING' ? 'list-item__map' : ''}>
+                    <ListItemButton onClick={() => handleListItemClick(0,'BICYCLING')}>
+                      <ListItemIcon><DirectionsBikeIcon sx={{color:'#2959a5'}} />  </ListItemIcon>
+                      <ListItemText secondary={`${directionsResponses['BICYCLING'].routes[0].legs[0].distance.text}`} primary={` ${getByciclesDuree()}`} />
+                      <ListItemText primary={'0'}  primaryTypographyProps={{
+                          color: '#7ac297',
+                          fontWeight: 600,
+                          fontSize:"20px",
+                          textAlign:"right"
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
                   <Divider />
                 </>
               )}
               {directionsResponses['TRANSIT'] && (
                 <>
-
-                    <ListItem>
-                    <ListItemButton>
-                        <ListItemIcon><DirectionsBusIcon />  </ListItemIcon>
-                        
-                        <ListItemText secondary={`${directionsResponses['TRANSIT'].routes[0].legs[0].distance.text}`} primary={` ${getTransitDuree()}`} />
-                        </ListItemButton>
-                    </ListItem>
-
+                  <ListItem  className={success_toast && type_click == 'TRANSIT' ? 'list-item__map__smoke' : ''}>
+                    <ListItemButton onClick={() => handleListItemClick(getEmprunte_Carbone(directionsResponses['TRANSIT'].routes[0].legs[0].distance.value / 1000 , 'transport') , 'TRANSIT' )}>
+                      <ListItemIcon><DirectionsBusIcon sx={{color:'#2959a5'}} />  </ListItemIcon>
+                      <ListItemText secondary={`${directionsResponses['TRANSIT'].routes[0].legs[0].distance.text}`} primary={` ${(getTransitDuree())}`} />
+                      <ListItemText primary={Number(getEmprunte_Carbone(directionsResponses['TRANSIT'].routes[0].legs[0].distance.value / 1000 , 'transport')).toFixed(2)} primaryTypographyProps={{
+                          fontWeight: 600,
+                          fontSize:"20px",
+                          textAlign:"right",
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
                   <Divider />
                 </>
               )}
               {directionsResponses['WALKING'] && (
                 <>
-                    <ListItem>
-                        <ListItemButton>
-                        <ListItemIcon><DirectionsWalkIcon />  </ListItemIcon>
-                        <ListItemText secondary={`${directionsResponses['WALKING'].routes[0].legs[0].distance.text}`} primary={` ${directionsResponses['WALKING'].routes[0].legs[0].duration.text}`}/>
-                        </ListItemButton>
-                    </ListItem>
+                  <ListItem  className={success_toast && type_click == 'WALKING'  ? 'list-item__map' : ''} >
+                    <ListItemButton onClick={() => handleListItemClick(0 , 'WALKING' )}>
+                      <ListItemIcon><DirectionsWalkIcon sx={{color:'#2959a5'}} />  </ListItemIcon>
+                      <ListItemText secondary={`${directionsResponses['WALKING'].routes[0].legs[0].distance.text}`} primary={` ${directionsResponses['WALKING'].routes[0].legs[0].duration.text}`}/>
+                      <ListItemText primary={'0'}  primaryTypographyProps={{
+                          color: '#7ac297',
+                          fontWeight: 600,
+                          fontSize:"20px",
+                          textAlign:"right"
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
                   <Divider />
                 </>
               )}

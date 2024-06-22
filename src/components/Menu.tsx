@@ -24,7 +24,8 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
-  carOutline
+  carOutline,
+  mapOutline
 } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import "./Menu.css";
@@ -43,10 +44,12 @@ const appPages: AppPage[] = [
     mdIcon: carOutline,
   },
   {
-    title: "Outbox",
-    url: "/folder/Outbox",
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
+    title: "map",
+    url: "/map",
+    iosIcon:   mapOutline
+    ,
+    mdIcon:   mapOutline
+    ,
   },
   {
     title: "Favorites",
