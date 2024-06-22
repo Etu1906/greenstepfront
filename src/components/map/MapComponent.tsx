@@ -96,16 +96,17 @@ const Map = () => {
   }
 
   async function calculateRoute() {
-    if (!origin || !destinationRef.current.value) {
+    if (!originRef.current.value || !destinationRef.current.value) {
       return;
     }
+    console.log( );
     const travelModes = ['DRIVING', 'BICYCLING', 'TRANSIT', 'WALKING'];
     const promises = travelModes.map(async (mode) => {
       const directionsService = new google.maps.DirectionsService();
       let response;
       try {
         response = await directionsService.route({
-          origin,
+          origin : originRef.current.value ,
           destination: destinationRef.current.value,
           travelMode: google.maps.TravelMode[mode]
         });
@@ -113,7 +114,7 @@ const Map = () => {
         console.error(`Error fetching ${mode} directions:`, error);
         // If error occurs, fallback to DRIVING
         response = await directionsService.route({
-          origin,
+          origin : originRef.current.value ,
           destination: destinationRef.current.value,
           travelMode: google.maps.TravelMode.DRIVING
         });
@@ -215,7 +216,6 @@ const Map = () => {
         }}
         onLoad={(map) => setMap(map)}
         center={center} zoom={15} mapContainerStyle={{ width: '100%', height: '100%' }} >
-        <Marker position={center} />
         {Object.keys(directionsResponses).map((mode) => (
           <DirectionsRenderer key={mode} directions={directionsResponses[mode]} />
         ))}
@@ -239,7 +239,6 @@ const Map = () => {
             placeholder="Origin"
             inputRef={originRef}
             sx={{ width: '150px' }}
-            value={origin} // Définir la valeur conditionnellement
           />
 
           </Autocomplete>
@@ -268,9 +267,6 @@ const Map = () => {
           <IconButton color="secondary" onClick={cleanRoute}>
             <CloseIcon  sx={{ color: "#2959a5" }} />
           </IconButton>
-          <IconButton color="primary" onClick={getLocation}>
-            <EmojiPeopleIcon sx={{ color: "#7ac297" }}  fontSize="large"/>
-          </IconButton>
           {/* Bouton pour ouvrir/fermer le Drawer */}
           <IconButton color="primary" onClick={() => setDrawerOpen(!drawerOpen)}>
             {drawerOpen ? <CloseIcon /> : <Typography><DisplaySettingsIcon sx={{ color: "#2959a5" }} fontSize="large" /></Typography>}
@@ -281,7 +277,7 @@ const Map = () => {
         {/* Drawer pour afficher les détails des itinéraires */}
         <Drawer anchor="right" open={drawerOpen} onClose={closeDrawer}>
           <Box p={2} width="350px" role="presentation">
-            <Typography variant="h6" sx={{ color:"#2959a5" }} >Itinéraires</Typography>
+            <Typography variant="h6" sx={{ color:"#2959a5" }} >Empreinte carbone</Typography>
             <List>
               {/* Affichage pour chaque mode de déplacement */}
               {directionsResponses['DRIVING'] && (
