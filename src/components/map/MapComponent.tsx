@@ -142,10 +142,12 @@ const Map = () => {
   function cleanRoute() {
     setDirectionsResponses({});
     setOrigin('');
+    setMap(null);
     setDestination('');
     if (originRef.current) originRef.current.value = '';
     if (destinationRef.current) destinationRef.current.value = '';
     setDrawerOpen(false);
+    window.location.reload();
   }
 
   function getByciclesDuree(): string {
@@ -235,8 +237,8 @@ const Map = () => {
           <Autocomplete>
           <TextField
             variant="outlined"
-            label="Origin"
-            placeholder="Origin"
+            label="Départ"
+            placeholder="Départ"
             inputRef={originRef}
             sx={{ width: '150px' }}
           />
