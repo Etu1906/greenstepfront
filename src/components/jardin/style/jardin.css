@@ -25,6 +25,10 @@
     padding-top: 4vh;
     align-items: center;
 }
+.padding-head{
+    padding-top: 4vh;
+
+}
 .store{
     background-color: #1e1e1e;
     width: 85vw;

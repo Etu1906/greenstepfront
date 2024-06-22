@@ -40,25 +40,26 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: "Leaderboard",
-    url: "/leaderboard",
-    iosIcon: medalOutline,
-    mdIcon: medalSharp,
-  },
-    {
     title: "Dashboard",
     url: "/dashboard",
     iosIcon: homeOutline,
     mdIcon: homeOutline,
   },
   {
-    title: "vos moyen de transport",
+    title: "Leaderboard",
+    url: "/leaderboard",
+    iosIcon: medalOutline,
+    mdIcon: medalSharp,
+  },
+  
+  {
+    title: "Moyens de transport",
     url: "/moyen-transport",
     iosIcon: carOutline,
     mdIcon: carOutline,
   },
   {
-    title: "map",
+    title: "Trajet",
     url: "/map",
     iosIcon:   mapOutline,
     mdIcon:   mapOutline,

@@ -228,7 +228,7 @@ const Map = () => {
           <IconButton color="primary" onClick={() => setDrawerOpen(!drawerOpen)}>
             {drawerOpen ? <CloseIcon /> : <Typography><DisplaySettingsIcon sx={{ color: "#2959a5" }} fontSize="large" /></Typography>}
           </IconButton>
-          <IonMenuButton className="hamburger__moyen-transport" sx={{ color: "#2959a5" }} />
+          <IonMenuButton/>
 
         </Stack>
         {/* Drawer pour afficher les détails des itinéraires */}

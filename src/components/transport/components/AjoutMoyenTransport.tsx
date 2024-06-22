@@ -168,7 +168,7 @@ const AjoutMoyenTransport: React.FC = () => {
         <div className="title__container">
 
           
-          <IonMenuButton className="hamburger__moyen-transport" />
+          <IonMenuButton/>
           <Menu open={isMenuOpen} onClose={toggleMenu} />
           <div className="moyen__title">
             Ajouter moyen de transport
@@ -233,6 +233,7 @@ const AjoutMoyenTransport: React.FC = () => {
             <ColorButton onClick={handleValider}>Valider</ColorButton>
             {state.success && (
               <IonToast
+                color={"success"}
                 isOpen={state.success}
                 message="Moyen de transport ajouté!"
                 position="bottom"

@@ -45,9 +45,8 @@ import { Landing } from "./components/landing/container/Landing";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import Page from "./pages/Page";
 
-import "./theme/variables.css";
+import "./theme/variables.scss";
 import MapRoot from "./components/map/Map-root";
-import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
 import { JardinRoot } from "./components/jardin/container/JardinRoot";
 
 setupIonicReact();

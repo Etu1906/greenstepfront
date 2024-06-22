@@ -1,4 +1,4 @@
-import { IonContent } from "@ionic/react";
+import { IonContent, IonMenuButton } from "@ionic/react";
 import { Tab, Tabs } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import "../../../theme/variables.scss";
@@ -58,7 +58,11 @@ const RankingRoot = () => {
 
   return (
     <div id="ranking-root">
-      <h1 className="title">Leaderboard</h1>
+      <div className="dashboard-head padding-head" style={{paddingLeft:"4vh", paddingRight: "4vh"}} >
+        <IonMenuButton />
+        <span>Leaderboard</span>
+        <div className="my-button">Lv10</div>
+      </div>
       <Tabs
         value={state.type}
         onChange={handleTabChange}
