@@ -26,8 +26,10 @@ export const DashboardComponent: React.FC = () => {
   if (isPedometerAvailable) {
     Pedometer.startPedometerUpdates().subscribe((data) => {
       setStepCount(data.numberOfSteps);
+      localStorage.setItem("pas", stepCount.toString());
     });
   }
+
   // } else {
   //   return (
   //     <IonText>
