@@ -88,9 +88,9 @@ export const ItemStore: React.FC<StoreProps> = (props: StoreProps) => {
                   }}
                 />
                 <div
-                  className={item.level < props.level ? "price" : "level-store"}
+                  className={item.level <= props.level ? "price" : "level-store"}
                 >
-                  {item.level < props.level
+                  {item.level <= props.level
                     ? `${item.price}p`
                     : `Lv${item.level}`}
                 </div>
