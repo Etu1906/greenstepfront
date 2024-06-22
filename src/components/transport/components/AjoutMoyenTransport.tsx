@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SelectAutocomplete from "../../form/Select";
@@ -13,12 +14,12 @@ import MoyenTransport from "../../../shared/type/MoyenTransport";
 import { IonMenuButton, IonToast } from "@ionic/react";
 import "./toast.scss";
 interface MoyenTransportState {
-  moyenTransport : MoyenTransport;
-  on_load: boolean; 
-  success : boolean
+  moyenTransport: MoyenTransport;
+  on_load: boolean;
+  success: boolean;
 }
 
-function GradientCircularProgress() {
+export function GradientCircularProgress() {
   return (
     <React.Fragment>
       <svg width={0} height={0}>
@@ -29,7 +30,9 @@ function GradientCircularProgress() {
           </linearGradient>
         </defs>
       </svg>
-      <CircularProgress sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }} />
+      <CircularProgress
+        sx={{ "svg circle": { stroke: "url(#my_gradient)" } }}
+      />
     </React.Fragment>
   );
 }
@@ -42,37 +45,37 @@ const AjoutMoyenTransport: React.FC = () => {
   };
 
   const [state, setState] = useState<MoyenTransportState>({
-    moyenTransport : {type: { nom: '', id: 0 },
-    marque: null,
-    modele: null,
-    transportCommun:  false ,
-    personnel:  false ,},
+    moyenTransport: {
+      type: { nom: "", id: 0 },
+      marque: null,
+      modele: null,
+      transportCommun: false,
+      personnel: false,
+    },
     on_load: true,
-    success : false
+    success: false,
   });
   const [types, setTypes] = useState<Type[]>([]);
   const [marques, setMarques] = useState<Marque[]>([]);
   const [modeles, setModeles] = useState<Modele[]>([]);
 
   useEffect(() => {
-    fetch('/type.json')
-      .then(response => response.json())
-      .then(data => {
+    fetch("/type.json")
+      .then((response) => response.json())
+      .then((data) => {
         setTypes(data);
-        return fetch('/data.json'); 
+        return fetch("/data.json");
       })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setMarques(data.voitures.map((voiture: any) => voiture.marques).flat());
-        setState(prevState => ({ ...prevState, on_load: false }));
+        setState((prevState) => ({ ...prevState, on_load: false }));
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-  
   }, []);
-  
-  
+
   const handleTypeChange = (event: any, value: any) => {
     setState({
       ...state,
@@ -80,8 +83,8 @@ const AjoutMoyenTransport: React.FC = () => {
         ...state.moyenTransport,
         type: { nom: value.label, id: value.id },
         marque: null,
-        modele: null
-      }
+        modele: null,
+      },
     });
   };
 
@@ -91,11 +94,11 @@ const AjoutMoyenTransport: React.FC = () => {
       moyenTransport: {
         ...state.moyenTransport,
         marque: { nom: value.label, id: value.id, modeles: [] },
-        modele: null
-      }
+        modele: null,
+      },
     });
 
-    const selectedMarque = marques.find(marque => marque.id === value.id);
+    const selectedMarque = marques.find((marque) => marque.id === value.id);
     if (selectedMarque) {
       setModeles(selectedMarque.modeles);
     }
@@ -116,8 +119,8 @@ const AjoutMoyenTransport: React.FC = () => {
       ...state,
       moyenTransport: {
         ...state.moyenTransport,
-        transportCommun: event.target.checked
-      }
+        transportCommun: event.target.checked,
+      },
     });
   };
 
@@ -126,22 +129,27 @@ const AjoutMoyenTransport: React.FC = () => {
       ...state,
       moyenTransport: {
         ...state.moyenTransport,
-        personnel: event.target.checked
-      }
+        personnel: event.target.checked,
+      },
     });
     console.log( state.moyenTransport );
   };
 
   const handleValider = () => {
-    const moyenTransportsFromLocalStorage = JSON.parse(localStorage.getItem('moyenTransports') || '[]');
+    const moyenTransportsFromLocalStorage = JSON.parse(
+      localStorage.getItem("moyenTransports") || "[]"
+    );
 
     moyenTransportsFromLocalStorage.push(state.moyenTransport);
 
-    localStorage.setItem('moyenTransports', JSON.stringify(moyenTransportsFromLocalStorage));
+    localStorage.setItem(
+      "moyenTransports",
+      JSON.stringify(moyenTransportsFromLocalStorage)
+    );
     console.log("tonga");
-    setState(prevState => ({ ...prevState, success: true }));
+    setState((prevState) => ({ ...prevState, success: true }));
     setTimeout(() => {
-      setState(prevState => ({ ...prevState, success: false }));
+      setState((prevState) => ({ ...prevState, success: false }));
     }, 3000);
     // setState({
     //   moyenTransport: {
@@ -158,6 +166,7 @@ const AjoutMoyenTransport: React.FC = () => {
     <>
       <div className="container__moyen-transport">
         <div className="title__container">
+
           
           <IonMenuButton className="hamburger__moyen-transport" />
           <Menu open={isMenuOpen} onClose={toggleMenu} />
@@ -165,17 +174,24 @@ const AjoutMoyenTransport: React.FC = () => {
             Ajouter moyen de transport
           </div>
         </div>
-        {state.on_load ? ( 
+        {state.on_load ? (
           <div className="loader-container">
             <GradientCircularProgress />
           </div>
         ) : (
           <div className="moyen__section">
-            <SelectAutocomplete label="Type" options={types.map(type => ({ id: type.id, label: type.nom }))} onChange={handleTypeChange} />
-            {state.moyenTransport.type.nom === 'voiture' && (
+            <SelectAutocomplete
+              label="Type"
+              options={types.map((type) => ({ id: type.id, label: type.nom }))}
+              onChange={handleTypeChange}
+            />
+            {state.moyenTransport.type.nom === "voiture" && (
               <SelectAutocomplete
                 label="Marque"
-                options={marques.map(marque => ({ id: marque.id, label: marque.nom }))}
+                options={marques.map((marque) => ({
+                  id: marque.id,
+                  label: marque.nom,
+                }))}
                 onChange={handleMarqueChange}
               />
             )}
@@ -189,31 +205,46 @@ const AjoutMoyenTransport: React.FC = () => {
             <FormGroup>
               <FormControlLabel
                 sx={{
-                  marginBottom: "10px"
+                  marginBottom: "10px",
                 }}
-                control={<IOSSwitch sx={{ m: 1 }} checked={state.moyenTransport.transportCommun} onChange={handleTransportCommunChange} />} label="Transport en commun" />
+                control={
+                  <IOSSwitch
+                    sx={{ m: 1 }}
+                    checked={state.moyenTransport.transportCommun}
+                    onChange={handleTransportCommunChange}
+                  />
+                }
+                label="Transport en commun"
+              />
               <FormControlLabel
                 sx={{
-                  marginBottom: "20px"
+                  marginBottom: "20px",
                 }}
-                control={<IOSSwitch sx={{ m: 1 }} checked={state.moyenTransport.personnel} onChange={handlePersonnelChange} />} label="Personnel" />
+                control={
+                  <IOSSwitch
+                    sx={{ m: 1 }}
+                    checked={state.moyenTransport.personnel}
+                    onChange={handlePersonnelChange}
+                  />
+                }
+                label="Personnel"
+              />
             </FormGroup>
-            <ColorButton onClick={handleValider} >Valider</ColorButton>
+            <ColorButton onClick={handleValider}>Valider</ColorButton>
             {state.success && (
-                <IonToast
-                  isOpen={state.success}
-                  message="Moyen de transport ajouté!"
-                  position="bottom"
-                  className="custom-toast"
-                  onDidDismiss={() => console.log('Toast dismissed')}
-                />
-              )}
+              <IonToast
+                isOpen={state.success}
+                message="Moyen de transport ajouté!"
+                position="bottom"
+                className="custom-toast"
+                onDidDismiss={() => console.log("Toast dismissed")}
+              />
+            )}
           </div>
         )}
       </div>
     </>
   );
-}
+};
 
 export default AjoutMoyenTransport;
-

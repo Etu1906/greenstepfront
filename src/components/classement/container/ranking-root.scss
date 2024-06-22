@@ -1,0 +1,29 @@
+@import "../../../theme/variables.scss";
+
+#ranking-root {
+  ion-content {
+    min-height: 100vh;
+  }
+  .title {
+    text-align: center;
+    font-weight: bold;
+    color: $green;
+  }
+  .tabs {
+    max-width: fit-content;
+    margin: auto;
+    .tab-element {
+      text-transform: none !important;
+      color: #000;
+      &.Mui-selected {
+        font-weight: bold;
+        color: $blue !important;
+      }
+    }
+    .MuiTabs-indicator {
+      background-color: $blue !important;
+      height: 3px !important;
+      border-radius: 15px;
+    }
+  }
+}
