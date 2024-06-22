@@ -7,8 +7,8 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
 } from "@ionic/react";
+
 
 import {
   archiveOutline,
@@ -26,10 +26,11 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
+  carOutline,
+  mapOutline,homeOutline, roseOutline
 } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import "./Menu.css";
-
 interface AppPage {
   url: string;
   iosIcon: string;
@@ -44,41 +45,29 @@ const appPages: AppPage[] = [
     iosIcon: medalOutline,
     mdIcon: medalSharp,
   },
-  {
-    title: "Inbox",
-    url: "/folder/Inbox",
-    iosIcon: mailOutline,
-    mdIcon: mailSharp,
+    {
+    title: "Dashboard",
+    url: "/dashboard",
+    iosIcon: homeOutline,
+    mdIcon: homeOutline,
   },
   {
-    title: "Outbox",
-    url: "/folder/Outbox",
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
+    title: "vos moyen de transport",
+    url: "/moyen-transport",
+    iosIcon: carOutline,
+    mdIcon: carOutline,
   },
   {
-    title: "Favorites",
-    url: "/folder/Favorites",
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
+    title: "map",
+    url: "/map",
+    iosIcon:   mapOutline,
+    mdIcon:   mapOutline,
   },
   {
-    title: "Archived",
-    url: "/folder/Archived",
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp,
-  },
-  {
-    title: "Trash",
-    url: "/folder/Trash",
-    iosIcon: trashOutline,
-    mdIcon: trashSharp,
-  },
-  {
-    title: "Spam",
-    url: "/folder/Spam",
-    iosIcon: warningOutline,
-    mdIcon: warningSharp,
+    title: "Jardin",
+    url: "/jardin",
+    iosIcon: roseOutline,
+    mdIcon: roseOutline,
   },
 ];
 
@@ -91,8 +80,9 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>
+            <img src="logo.png" alt="" />
+          </IonListHeader>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -116,16 +106,6 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
-        </IonList>
-
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon aria-hidden="true" slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
         </IonList>
       </IonContent>
     </IonMenu>

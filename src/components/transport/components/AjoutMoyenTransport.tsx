@@ -1,16 +1,17 @@
-import { IonToast } from "@ionic/react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { FormGroup } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import FormControlLabel from "@mui/material/FormControlLabel";
+
 import React, { useEffect, useState } from "react";
-import Marque from "../../../shared/components/Marque";
-import Modele from "../../../shared/components/Modele";
-import MoyenTransport from "../../../shared/components/MoyenTransport";
-import Type from "../../../shared/components/Type";
-import ColorButton from "../../../shared/hooks/ColorButton";
-import IOSSwitch from "../../../shared/hooks/IOSSwitch";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SelectAutocomplete from "../../form/Select";
+import { FormGroup, Menu } from "@mui/material";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import IOSSwitch from "../../../shared/hooks/IOSSwitch";
+import ColorButton from "../../../shared/hooks/ColorButton";
+import Marque from "../../../shared/type/Marque";
+import Modele from "../../../shared/type/Modele";
+import Type from "../../../shared/type/Type";
+import CircularProgress from '@mui/material/CircularProgress';
+import MoyenTransport from "../../../shared/type/MoyenTransport";
+import { IonMenuButton, IonToast } from "@ionic/react";
 import "./toast.scss";
 interface MoyenTransportState {
   moyenTransport: MoyenTransport;
@@ -37,6 +38,12 @@ export function GradientCircularProgress() {
 }
 
 const AjoutMoyenTransport: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const [state, setState] = useState<MoyenTransportState>({
     moyenTransport: {
       type: { nom: "", id: 0 },
@@ -97,13 +104,13 @@ const AjoutMoyenTransport: React.FC = () => {
     }
   };
 
-  const handleModeleChange = (event: any, value: any) => {
+  const handleModeleChange = (event: any, value: any , emprunte_carbone : number ) => {
     setState({
       ...state,
       moyenTransport: {
         ...state.moyenTransport,
-        modele: { nom: value.label, id: value.id },
-      },
+        modele: { nom: value.label, id: value.id , emprunte_carbone: emprunte_carbone }
+      }
     });
   };
 
@@ -125,6 +132,7 @@ const AjoutMoyenTransport: React.FC = () => {
         personnel: event.target.checked,
       },
     });
+    console.log( state.moyenTransport );
   };
 
   const handleValider = () => {
@@ -158,10 +166,13 @@ const AjoutMoyenTransport: React.FC = () => {
     <>
       <div className="container__moyen-transport">
         <div className="title__container">
-          <div className="back">
-            <ArrowBackIcon />
+
+          
+          <IonMenuButton className="hamburger__moyen-transport" />
+          <Menu open={isMenuOpen} onClose={toggleMenu} />
+          <div className="moyen__title">
+            Ajouter moyen de transport
           </div>
-          <div className="moyen__title">Ajouter moyen de transport</div>
         </div>
         {state.on_load ? (
           <div className="loader-container">
@@ -187,11 +198,8 @@ const AjoutMoyenTransport: React.FC = () => {
             {state.moyenTransport.marque && (
               <SelectAutocomplete
                 label="Modèle"
-                options={modeles.map((modele) => ({
-                  id: modele.id,
-                  label: modele.nom,
-                }))}
-                onChange={handleModeleChange}
+                options={modeles.map(modele => ({ id: modele.id, label: modele.nom }))}
+                onChange={(event, value) => handleModeleChange(event, value, modeles.find(modele => modele.id === value.id)?.emprunte_carbone || 0)}
               />
             )}
             <FormGroup>

@@ -2,7 +2,7 @@ import { styled as muiStyled } from '@mui/material/styles';
 import { ButtonProps } from '@mui/material/Button';
 import Button from '@mui/material/Button';
 const ColorButton = muiStyled(Button)<ButtonProps>(({ theme }) => ({
-    backgroundColor: "#344e41",
+    backgroundColor: "#2959a5",
     borderRadius: '25px',
     color:"white",
     height:50,
@@ -11,10 +11,10 @@ const ColorButton = muiStyled(Button)<ButtonProps>(({ theme }) => ({
       backgroundColor: "#a3b18a",
     },
     '&:active': {
-      backgroundColor: '#2c3e33', 
+      backgroundColor: '#7ac297', 
     },
     '&.Mui-focusVisible': {
-      backgroundColor: '#a3b18a', 
+      backgroundColor: '#7ac297', 
     },
   }));
 

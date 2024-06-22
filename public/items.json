@@ -1,0 +1,77 @@
+[
+    {
+        "url": "a1.png",
+        "level": 1,
+        "price": 10
+    },
+    {
+        "url": "a2.png",
+        "level": 2,
+        "price": 20
+    },
+    {
+        "url": "a3.png",
+        "level": 3,
+        "price": 30
+    },
+    {
+        "url": "a4.png",
+        "level": 4,
+        "price": 40
+    },
+    {
+        "url": "a5.png",
+        "level": 5,
+        "price": 50
+    },
+    {
+        "url": "fountain2.png",
+        "level": 5,
+        "price": 20
+    },
+    {
+        "url": "lake1.png",
+        "level": 5,
+        "price": 20
+    },
+    {
+        "url": "a6.png",
+        "level": 6,
+        "price": 60
+    },
+    {
+        "url": "a8.png",
+        "level": 8,
+        "price": 80
+    },
+    {
+        "url": "a9.png",
+        "level": 9,
+        "price": 90
+    },
+    {
+        "url": "a10.png",
+        "level": 10,
+        "price": 100
+    },
+    {
+        "url": "a11.png",
+        "level": 11,
+        "price": 110
+    },
+    {
+        "url": "fountain1.png",
+        "level": 15,
+        "price": 20
+    },
+    {
+        "url": "lake2.png",
+        "level": 15,
+        "price": 20
+    },
+    {
+        "url": "statut.png",
+        "level": 15,
+        "price": 20
+    }
+]

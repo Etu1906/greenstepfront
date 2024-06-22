@@ -44,7 +44,11 @@ import Map from "./components/example/Map";
 import { Landing } from "./components/landing/container/Landing";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import Page from "./pages/Page";
-import "./theme/variables.scss";
+
+import "./theme/variables.css";
+import MapRoot from "./components/map/Map-root";
+import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
+import { JardinRoot } from "./components/jardin/container/JardinRoot";
 
 setupIonicReact();
 
@@ -70,8 +74,11 @@ const App: React.FC = () => {
             <Route path="/folder/:name" exact={true}>
               <Page />
             </Route>
-            <Route path="/map" exact={true}>
-              <Map />
+            <Route path="/map" >
+              <MapRoot />
+            </Route>
+            <Route path="/jardin" exact={true}>
+              <JardinRoot />
             </Route>
             <Route exact path="/leaderboard">
               <RankingRoot />

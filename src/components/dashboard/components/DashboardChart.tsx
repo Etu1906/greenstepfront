@@ -58,13 +58,13 @@ export const DashboardChart: React.FC<DashboardChartProps> = (props) => {
                 data: props.greendata,
                 label: "pas",
                 id: "pas",
-                color: "#588157",
+                color: "#7ac297",
               },
               {
                 data: props.reddata,
                 label: "empreinte carbone",
                 id: "carbone",
-                color: "#faa5a5",
+                color: "#2959a5",
               },
             ]}
             xAxis={[{ data: labels, scaleType: "band" }]}
