@@ -1,10 +1,14 @@
-$primary-color: #f7f2ef;
+$primary-color: #f1f1f1;
 $white-color:#ffff;
-$second-colr:#344e41;
-$third-color:#a3b18a;
+$second-color:#7ac297;
+$third-color:#2959a5;
 .container__moyen-transport{
     background-color: $primary-color;
-    padding: 25px;
+    padding: 20px;
+    height: 100vh;
+    .hamburger__moyen-transport{
+        justify-content: flex-start !important;
+    }
     .title__container
     {
         margin-top: 40px;
@@ -27,7 +31,7 @@ $third-color:#a3b18a;
 
 }
 ion-toast.custom-toast {
-    --background:#2dd55b;
+    --background:$second-color;
     --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
     --color:white;
     --border-radius: 10px;

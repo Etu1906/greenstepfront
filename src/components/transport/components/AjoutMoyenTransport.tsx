@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SelectAutocomplete from "../../form/Select";
-import { FormGroup } from "@mui/material";
+import { FormGroup, Menu } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IOSSwitch from "../../../shared/hooks/IOSSwitch";
 import ColorButton from "../../../shared/hooks/ColorButton";
-import Marque from "../../../shared/components/Marque";
-import Modele from "../../../shared/components/Modele";
-import Type from "../../../shared/components/Type";
+import Marque from "../../../shared/type/Marque";
+import Modele from "../../../shared/type/Modele";
+import Type from "../../../shared/type/Type";
 import CircularProgress from '@mui/material/CircularProgress';
-import MoyenTransport from "../../../shared/components/MoyenTransport";
-import { IonToast } from "@ionic/react";
+import MoyenTransport from "../../../shared/type/MoyenTransport";
+import { IonMenuButton, IonToast } from "@ionic/react";
 import "./toast.scss";
 interface MoyenTransportState {
   moyenTransport : MoyenTransport;
@@ -35,6 +35,12 @@ function GradientCircularProgress() {
 }
 
 const AjoutMoyenTransport: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const [state, setState] = useState<MoyenTransportState>({
     moyenTransport : {type: { nom: '', id: 0 },
     marque: null,
@@ -95,12 +101,12 @@ const AjoutMoyenTransport: React.FC = () => {
     }
   };
 
-  const handleModeleChange = (event: any, value: any) => {
+  const handleModeleChange = (event: any, value: any , emprunte_carbone : number ) => {
     setState({
       ...state,
       moyenTransport: {
         ...state.moyenTransport,
-        modele: { nom: value.label, id: value.id }
+        modele: { nom: value.label, id: value.id , emprunte_carbone: emprunte_carbone }
       }
     });
   };
@@ -123,6 +129,7 @@ const AjoutMoyenTransport: React.FC = () => {
         personnel: event.target.checked
       }
     });
+    console.log( state.moyenTransport );
   };
 
   const handleValider = () => {
@@ -146,15 +153,14 @@ const AjoutMoyenTransport: React.FC = () => {
     //   },
     //   on_load: false
     // });
-
   };
   return (
     <>
       <div className="container__moyen-transport">
         <div className="title__container">
-          <div className="back">
-            <ArrowBackIcon />
-          </div>
+          
+          <IonMenuButton className="hamburger__moyen-transport" />
+          <Menu open={isMenuOpen} onClose={toggleMenu} />
           <div className="moyen__title">
             Ajouter moyen de transport
           </div>
@@ -177,7 +183,7 @@ const AjoutMoyenTransport: React.FC = () => {
               <SelectAutocomplete
                 label="Modèle"
                 options={modeles.map(modele => ({ id: modele.id, label: modele.nom }))}
-                onChange={handleModeleChange}
+                onChange={(event, value) => handleModeleChange(event, value, modeles.find(modele => modele.id === value.id)?.emprunte_carbone || 0)}
               />
             )}
             <FormGroup>

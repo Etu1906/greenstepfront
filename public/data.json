@@ -8,15 +8,18 @@
                     "modeles": [
                         {
                             "id": 101,
-                            "nom": "R19"
+                            "nom": "R19",
+                            "emprunte_carbone": 120
                         },
                         {
                             "id": 102,
-                            "nom": "Clio"
+                            "nom": "Clio",
+                            "emprunte_carbone": 100
                         },
                         {
                             "id": 103,
-                            "nom": "Megane"
+                            "nom": "Megane",
+                            "emprunte_carbone": 150
                         }
                     ]
                 },
@@ -26,15 +29,18 @@
                     "modeles": [
                         {
                             "id": 201,
-                            "nom": "208"
+                            "nom": "208",
+                            "emprunte_carbone": 110
                         },
                         {
                             "id": 202,
-                            "nom": "308"
+                            "nom": "308",
+                            "emprunte_carbone": 130
                         },
                         {
                             "id": 203,
-                            "nom": "508"
+                            "nom": "508",
+                            "emprunte_carbone": 160
                         }
                     ]
                 },
@@ -44,15 +50,18 @@
                     "modeles": [
                         {
                             "id": 301,
-                            "nom": "C3"
+                            "nom": "C3",
+                            "emprunte_carbone": 90
                         },
                         {
                             "id": 302,
-                            "nom": "C4"
+                            "nom": "C4",
+                            "emprunte_carbone": 110
                         },
                         {
                             "id": 303,
-                            "nom": "C5"
+                            "nom": "C5",
+                            "emprunte_carbone": 140
                         }
                     ]
                 }
@@ -66,15 +75,18 @@
                     "modeles": [
                         {
                             "id": 401,
-                            "nom": "Corolla"
+                            "nom": "Corolla",
+                            "emprunte_carbone": 100
                         },
                         {
                             "id": 402,
-                            "nom": "Camry"
+                            "nom": "Camry",
+                            "emprunte_carbone": 130
                         },
                         {
                             "id": 403,
-                            "nom": "Yaris"
+                            "nom": "Yaris",
+                            "emprunte_carbone": 80
                         }
                     ]
                 },
@@ -84,15 +96,18 @@
                     "modeles": [
                         {
                             "id": 501,
-                            "nom": "Civic"
+                            "nom": "Civic",
+                            "emprunte_carbone": 110
                         },
                         {
                             "id": 502,
-                            "nom": "Accord"
+                            "nom": "Accord",
+                            "emprunte_carbone": 140
                         },
                         {
                             "id": 503,
-                            "nom": "CR-V"
+                            "nom": "CR-V",
+                            "emprunte_carbone": 120
                         }
                     ]
                 },
@@ -102,15 +117,18 @@
                     "modeles": [
                         {
                             "id": 601,
-                            "nom": "Focus"
+                            "nom": "Focus",
+                            "emprunte_carbone": 95
                         },
                         {
                             "id": 602,
-                            "nom": "Mustang"
+                            "nom": "Mustang",
+                            "emprunte_carbone": 180
                         },
                         {
                             "id": 603,
-                            "nom": "Fiesta"
+                            "nom": "Fiesta",
+                            "emprunte_carbone": 85
                         }
                     ]
                 }

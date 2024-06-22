@@ -1,0 +1,14 @@
+.list-item__map{
+    background: url('./feuille.gif');
+    background-size: cover;
+    background-position: center;
+    animation: 0.5s ease-in-out;
+}
+
+.list-item__map__smoke{
+    background: url('./world.gif');
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: 75% 25%;
+    animation: 0.5s ease-in-out;
+}

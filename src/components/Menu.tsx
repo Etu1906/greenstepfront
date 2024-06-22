@@ -9,10 +9,26 @@ import {
   IonMenuToggle,
 } from "@ionic/react";
 
-import { homeOutline, roseOutline } from "ionicons/icons";
+
+import {
+  archiveOutline,
+  archiveSharp,
+  bookmarkOutline,
+  heartOutline,
+  heartSharp,
+  mailOutline,
+  mailSharp,
+  paperPlaneOutline,
+  paperPlaneSharp,
+  trashOutline,
+  trashSharp,
+  warningOutline,
+  warningSharp,
+  carOutline,
+  mapOutline,homeOutline, roseOutline
+} from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import "./Menu.css";
-
 interface AppPage {
   url: string;
   iosIcon: string;
@@ -26,6 +42,18 @@ const appPages: AppPage[] = [
     url: "/dashboard",
     iosIcon: homeOutline,
     mdIcon: homeOutline,
+  },
+  {
+    title: "vos moyen de transport",
+    url: "/moyen-transport",
+    iosIcon: carOutline,
+    mdIcon: carOutline,
+  },
+  {
+    title: "map",
+    url: "/map",
+    iosIcon:   mapOutline,
+    mdIcon:   mapOutline,
   },
   {
     title: "Jardin",
