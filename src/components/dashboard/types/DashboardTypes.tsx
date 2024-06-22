@@ -3,3 +3,9 @@ export interface ProgressProps {
   actual_value: number;
   type: number;
 }
+export interface AirqualityProps {
+  avg: number;
+  day: string;
+  max: number;
+  min: number;
+}
