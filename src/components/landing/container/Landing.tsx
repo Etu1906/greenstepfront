@@ -18,6 +18,8 @@ export const Landing: React.FC = () => {
     // localStorage.setItem("points", "1000");
     // localStorage.setItem("level", "0");
     localStorage.setItem("carbone", "0");
+    localStorage.setItem("points","162");
+
     // localStorage.setItem("old_carbone", "5");
     const myitems: ItemJardin[] = [
       {

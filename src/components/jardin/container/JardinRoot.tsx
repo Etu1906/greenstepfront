@@ -26,7 +26,7 @@ const initialState: JardinState = {
     y: 0,
     url: "",
   },
-  points: 162
+  points: 0
 };
 export const JardinRoot: React.FC = () => {
   const [state, setState] = useState<JardinState>(initialState);
@@ -38,6 +38,7 @@ export const JardinRoot: React.FC = () => {
           ...prevState,
           items: data,
           itemjardin: JSON.parse(localStorage.getItem("myitems") || ""),
+          points: parseInt(localStorage.getItem("points")||"0")
         }));
       });
   }, []);
