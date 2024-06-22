@@ -45,6 +45,7 @@ import Page from "./pages/Page";
 import "./theme/variables.css";
 import MapRoot from "./components/map/Map-root";
 import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
+import { JardinRoot } from "./components/jardin/container/JardinRoot";
 
 setupIonicReact();
 
@@ -74,6 +75,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/map" >
               <MapRoot />
+            </Route>
+            <Route path="/jardin" exact={true}>
+              <JardinRoot />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
