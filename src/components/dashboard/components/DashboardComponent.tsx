@@ -26,8 +26,10 @@ export const DashboardComponent: React.FC = () => {
   if (isPedometerAvailable) {
     Pedometer.startPedometerUpdates().subscribe((data) => {
       setStepCount(data.numberOfSteps);
+      localStorage.setItem("pas", stepCount.toString());
     });
   }
+
   // } else {
   //   return (
   //     <IonText>
@@ -40,11 +42,15 @@ export const DashboardComponent: React.FC = () => {
     <>
       <div className="inner-dashboard">
         <Progress old_value={650} actual_value={stepCount} type={1}></Progress>
-        <Progress old_value={20} actual_value={parseInt(localStorage.getItem("carbone")||"0")} type={2}></Progress>
+        <Progress
+          old_value={20}
+          actual_value={parseInt(localStorage.getItem("carbone") || "0")}
+          type={2}
+        ></Progress>
         <DashboardChart
           type={"week"}
-          greendata={[1, 2, 3, 4, 5, 6, 7]}
-          reddata={[7, 6, 5, 4, 3, 2, 1]}
+          greendata={[1, 2, 3, 4, 5, 0, 0]}
+          reddata={[7, 6, 5, 4, 3, 0, 0]}
         />
         <DashboardChart
           type={"month"}
