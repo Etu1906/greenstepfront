@@ -37,9 +37,6 @@ export const DashboardChart: React.FC<DashboardChartProps> = (props) => {
       <div className="dashboard-week">
       {props.type=="week" && <span className="my-title">Cette semaine</span>}
       {props.type=="month" && <span className="my-title">Ce mois</span>}
-
-          
-
         <div className="legends">
           <div className="legend">
             <div className="color" id="legend-pas-color"></div>

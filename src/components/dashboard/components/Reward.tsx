@@ -57,22 +57,25 @@ export const Reward: React.FC = () => {
       <div className="rewards-level-up" onClick={handleClick}>
         <img src="reward.gif" alt="" className="reward-gif" />
         {state.tab == 0 && (
-          <span className="sentence-rewards">
+          <div className="sentence-rewards pulsate">
             {" "}
-            Bravo, grâce à la diminution de votre empreinte carbone de 10% vous
-            êtes maintenant au level {state.level}.
-            <br />
-            Touchez pour continuer...
-          </span>
+            <div className="">
+              Bravo, grâce à la diminution de votre empreinte carbone de 10% vous
+              êtes maintenant au <div className="points__rewards">level {state.level} </div>
+              <br />
+              Touchez pour continuer...
+            </div>
+          </div>
         )}
         {state.tab == 1 && (
-          <span className="sentence-rewards">
+          <div className="sentence-rewards">
             {" "}
-            Bravo, vous avez fait {state.new_pas - state.old_pas} pas en plus.
-            Vous recevez donc {state.new_pas - state.old_pas} points!!
-            <br />
-            Touchez pour continuer...
-          </span>
+            <div className="">
+              vous avez fait plus de 200 pas hier.
+              <div className="bonus__rewards" >Bonus :  <div className="points__rewards">{state.new_pas - state.old_pas}</div> points!!</div>
+              <br />
+            </div>
+          </div>
         )}
       </div>
     </>
