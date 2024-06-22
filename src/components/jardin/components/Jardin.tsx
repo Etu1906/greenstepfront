@@ -21,7 +21,7 @@ export const Jardin: React.FC<JardinProps> = (props: JardinProps) => {
           />
         ))}
         {props.new.url != "" && (
-          <img
+          <img className="jardin-item"
             key={`${new Date().toLocaleDateString()}`}
             src={props.new.url}
             style={{
