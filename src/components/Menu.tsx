@@ -11,6 +11,7 @@ import {
 
 import {
   carOutline,
+  cloud,
   homeOutline,
   mailOutline,
   mapOutline,
@@ -64,6 +65,12 @@ const appPages: AppPage[] = [
     url: "/actus",
     iosIcon: mailOutline,
     mdIcon: mailOutline,
+  },
+  {
+    title: "Qualité de l'air",
+    url: "/qualite",
+    iosIcon: cloud,
+    mdIcon: cloud,
   },
 ];
 
