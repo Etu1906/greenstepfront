@@ -141,10 +141,12 @@ const Map = () => {
   function cleanRoute() {
     setDirectionsResponses({});
     setOrigin('');
+    setMap(null);
     setDestination('');
     if (originRef.current) originRef.current.value = '';
     if (destinationRef.current) destinationRef.current.value = '';
     setDrawerOpen(false);
+    window.location.reload();
   }
 
   function getByciclesDuree(): string {
