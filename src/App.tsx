@@ -40,14 +40,14 @@ import "./app.scss";
 import Menu from "./components/Menu";
 import RankingRoot from "./components/classement/container/ranking-root";
 import { DashboardRoot } from "./components/dashboard/container/DashboardRoot";
-import Map from "./components/example/Map";
 import { Landing } from "./components/landing/container/Landing";
 import AjoutMoyenTransportRoot from "./components/transport/container/ajout-moyen-transport-root";
 import Page from "./pages/Page";
 
-import "./theme/variables.scss";
-import MapRoot from "./components/map/Map-root";
+import { ActusRoot } from "./components/actualite/container/ActusRoot";
 import { JardinRoot } from "./components/jardin/container/JardinRoot";
+import MapRoot from "./components/map/Map-root";
+import "./theme/variables.scss";
 
 setupIonicReact();
 
@@ -73,7 +73,7 @@ const App: React.FC = () => {
             <Route path="/folder/:name" exact={true}>
               <Page />
             </Route>
-            <Route path="/map" >
+            <Route path="/map">
               <MapRoot />
             </Route>
             <Route path="/jardin" exact={true}>
@@ -81,6 +81,9 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/leaderboard">
               <RankingRoot />
+            </Route>
+            <Route exact path="/actus">
+              <ActusRoot />
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>

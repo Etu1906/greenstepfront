@@ -9,25 +9,14 @@ import {
   IonMenuToggle,
 } from "@ionic/react";
 
-
 import {
-  archiveOutline,
-  archiveSharp,
-  bookmarkOutline,
-  heartOutline,
-  heartSharp,
+  carOutline,
+  homeOutline,
   mailOutline,
-  mailSharp,
+  mapOutline,
   medalOutline,
   medalSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
-  carOutline,
-  mapOutline,homeOutline, roseOutline
+  roseOutline,
 } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import "./Menu.css";
@@ -51,7 +40,7 @@ const appPages: AppPage[] = [
     iosIcon: medalOutline,
     mdIcon: medalSharp,
   },
-  
+
   {
     title: "Moyens de transport",
     url: "/moyen-transport",
@@ -61,14 +50,20 @@ const appPages: AppPage[] = [
   {
     title: "Trajet",
     url: "/map",
-    iosIcon:   mapOutline,
-    mdIcon:   mapOutline,
+    iosIcon: mapOutline,
+    mdIcon: mapOutline,
   },
   {
     title: "Jardin",
     url: "/jardin",
     iosIcon: roseOutline,
     mdIcon: roseOutline,
+  },
+  {
+    title: "Actualités",
+    url: "/actus",
+    iosIcon: mailOutline,
+    mdIcon: mailOutline,
   },
 ];
 
