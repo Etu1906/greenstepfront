@@ -20,7 +20,7 @@
     /* font-weight: bold; */
 }
 .my-button{
-    background-color: #a3b18a;
+    background-color: #7ac297;
     border-radius: 20px;
     color:white!important;
     width: 40px;
@@ -79,7 +79,7 @@ ion-icon{
   }
       
 :root{
-  --ion-color-success: #aefdae;
+  --ion-color-success: #7ac297;
   --ion-color-secondary: #ffff72;
   --ion-color-danger: #faa5a5;
   --ion-color-warning: #fcdea7;
@@ -158,10 +158,10 @@ g{
   margin-left: 15px;
 }
 #legend-pas-color{
-  background-color: #588157;
+  background-color: #7ac297;
 }
 #legend-carbone-color{
-  background-color: #faa5a5;
+  background-color: #2959a5;
 }
 .MuiChartsAxis-directionY{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

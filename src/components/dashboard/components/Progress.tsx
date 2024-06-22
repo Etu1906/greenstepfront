@@ -11,7 +11,7 @@ export const Progress: React.FC<ProgressProps> = (props: ProgressProps) => {
   var borderRadius = "20px 0px 0px 20px";
   if (props.old_value <= props.actual_value) {
     percentage = 1;
-    borderRadius="20px";
+    borderRadius = "20px";
   }
   var color;
 
@@ -70,7 +70,7 @@ export const Progress: React.FC<ProgressProps> = (props: ProgressProps) => {
           style={{
             width: `${percentage * 100}%`,
             backgroundColor: `var(--ion-color-${color})`,
-            borderRadius:`${borderRadius}`,
+            borderRadius: `${borderRadius}`,
           }}
         ></div>
         <div className="progress-inner">

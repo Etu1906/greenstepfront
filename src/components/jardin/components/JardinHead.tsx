@@ -1,11 +1,11 @@
 import { IonMenuButton } from "@ionic/react";
-export const DashboardHead: React.FC = () => {
+
+export const JardinHead: React.FC = () => {
   return (
     <>
-      <div className="dashboard-head">
+      <div className="jardin-head">
         <IonMenuButton />
-
-        <span>Mon tableau de bord</span>
+        <span>Mon jardin</span>
         <div className="my-button">Lv10</div>
       </div>
     </>
