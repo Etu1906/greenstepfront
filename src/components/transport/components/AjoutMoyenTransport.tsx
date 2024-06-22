@@ -101,12 +101,12 @@ const AjoutMoyenTransport: React.FC = () => {
     }
   };
 
-  const handleModeleChange = (event: any, value: any) => {
+  const handleModeleChange = (event: any, value: any , emprunte_carbone : number ) => {
     setState({
       ...state,
       moyenTransport: {
         ...state.moyenTransport,
-        modele: { nom: value.label, id: value.id }
+        modele: { nom: value.label, id: value.id , emprunte_carbone: emprunte_carbone }
       }
     });
   };
@@ -129,6 +129,7 @@ const AjoutMoyenTransport: React.FC = () => {
         personnel: event.target.checked
       }
     });
+    console.log( state.moyenTransport );
   };
 
   const handleValider = () => {
@@ -157,10 +158,8 @@ const AjoutMoyenTransport: React.FC = () => {
     <>
       <div className="container__moyen-transport">
         <div className="title__container">
-          {/* <div className="back" onClick={toggleMenu}>
-            <ArrowBackIcon />
-          </div> */}
-          <IonMenuButton />
+          
+          <IonMenuButton className="hamburger__moyen-transport" />
           <Menu open={isMenuOpen} onClose={toggleMenu} />
           <div className="moyen__title">
             Ajouter moyen de transport
@@ -184,7 +183,7 @@ const AjoutMoyenTransport: React.FC = () => {
               <SelectAutocomplete
                 label="Modèle"
                 options={modeles.map(modele => ({ id: modele.id, label: modele.nom }))}
-                onChange={handleModeleChange}
+                onChange={(event, value) => handleModeleChange(event, value, modeles.find(modele => modele.id === value.id)?.emprunte_carbone || 0)}
               />
             )}
             <FormGroup>
